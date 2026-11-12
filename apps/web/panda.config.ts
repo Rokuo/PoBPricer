@@ -27,6 +27,7 @@ export default defineConfig({
           gold: {
             400: { value: "#D4A35A" },
           },
+          white: { 100: { value: "#FFFFFF" } },
           citrine: { 300: { value: "#E8E07A" } },
           periwinkle: { 300: { value: "#9C9CFF" } },
           ember: { 400: { value: "#D98A45" } },
@@ -41,7 +42,22 @@ export default defineConfig({
       // What each colour is *for*. Components should only ever use these names.
       semanticTokens: {
         colors: {
-          // TODO(human): map roles to the raw palette above (see the Learn by Doing note in chat).
+          bg: {
+            ground: { value: "{colors.ink.950}" },
+            surface: { value: "{colors.ink.900}" },
+          },
+          border: { value: "{colors.ink.700}" },
+          fg: {
+            DEFAULT: { value: "{colors.parchment.100}" },
+            muted: { value: "{colors.parchment.400}" },
+          },
+          accent: { value: "{colors.gold.400}" },
+          rarity: {
+            normal: { value: "{colors.white.100}" },
+            magic: { value: "{colors.periwinkle.300}" },
+            rare: { value: "{colors.citrine.300}" },
+            unique: { value: "{colors.ember.400}" },
+          },
         },
       },
     },
