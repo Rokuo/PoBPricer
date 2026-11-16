@@ -3,7 +3,7 @@
   "compilerOptions": {
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "lib": ["ES2023", "DOM", "DOM.Iterable"]
+    "lib": ["ES2023", "ESNext.TypedArrays", "DOM", "DOM.Iterable"]
   },
   "include": ["src", "styled-system", "panda.config.ts"]
 }

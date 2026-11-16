@@ -11,7 +11,11 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit"
   },
+  "dependencies": {
+    "fflate": "0.8.3"
+  },
   "devDependencies": {
+    "@ledger/fixtures": "workspace:*",
     "vite": "8.3.7",
     "vitest": "5.1.0"
   }

@@ -204,7 +204,14 @@ importers:
         version: 2.5.0
 
   packages/core:
+    dependencies:
+      fflate:
+        specifier: 0.8.3
+        version: 0.8.3
     devDependencies:
+      '@ledger/fixtures':
+        specifier: workspace:*
+        version: link:../fixtures
       vite:
         specifier: 8.3.7
         version: 8.3.7(@types/node@26.6.6)
