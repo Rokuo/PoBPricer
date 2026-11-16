@@ -4,4 +4,5 @@ coverage/
 .env*
 !.env.example
 CLAUDE.md
+docs/LEARNING.md
 styled-system/
