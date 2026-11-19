@@ -14,10 +14,16 @@ describe("parsing PoB XML into a Build", () => {
     });
   });
 
-  // TODO(human): one test — XML whose <Build> has no className throws a PobDecodeError.
   it("should returns error when missing attributes", () => {
     const wrongpob =
       '<PathOfBuilding><Build ascendClassName="Necromancer"/></PathOfBuilding>';
     expect(() => parse(wrongpob)).toThrow(PobDecodeError);
+  });
+
+  it("should have a ring named squirming terror", () => {
+    const pob = pobCodes.necromancerAggw;
+    const decoded = decode(pob);
+    const build = parse(decoded);
+    expect(build.gear["Ring 2"]).toMatchObject({ rarity: "UNIQUE", name: "Squirming Terror", baseType: "Unset Ring" });
   });
 });
