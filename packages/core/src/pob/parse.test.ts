@@ -24,6 +24,10 @@ describe("parsing PoB XML into a Build", () => {
     const pob = pobCodes.necromancerAggw;
     const decoded = decode(pob);
     const build = parse(decoded);
-    expect(build.gear["Ring 2"]).toMatchObject({ rarity: "UNIQUE", name: "Squirming Terror", baseType: "Unset Ring" });
+    expect(build.gear["Ring 2"]).toMatchObject({
+      rarity: "UNIQUE",
+      name: "Squirming Terror",
+      baseType: "Unset Ring",
+    });
   });
 });
