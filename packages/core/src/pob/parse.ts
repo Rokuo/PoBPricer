@@ -1,3 +1,4 @@
+import { parseItem, type Item } from "./item.ts";
 import { XMLParser } from "fast-xml-parser";
 import { z } from "zod";
 import { PobDecodeError } from "./decode.ts";
@@ -5,20 +6,43 @@ import { PobDecodeError } from "./decode.ts";
 export type Build = {
   className: string;
   ascendancy: string;
+  gear: Partial<Record<string, Item>>;
 };
 
 const PobXml = z.looseObject({
-  PathOfBuilding: z.looseObject({
-    Build: z
-      .looseObject({
+  PathOfBuilding: z
+    .looseObject({
+      Build: z.looseObject({
         className: z.string(),
         ascendClassName: z.string(),
-      })
-      .transform((b): Build => ({
-        className: b.className,
-        ascendancy: b.ascendClassName,
-      })),
-  }),
+      }),
+      Items: z.looseObject({
+        activeItemSet: z.string(),
+        Item: z.array(
+          z.looseObject({
+            id: z.string(),
+            "#text": z.string(),
+          }),
+        ),
+        ItemSet: z.array(
+          z.looseObject({
+            id: z.string(),
+            Slot: z.array(
+              z.looseObject({
+                name: z.string(),
+                itemId: z.string(),
+              }),
+            ),
+          }),
+        ),
+      }),
+    })
+    .transform((pob): Build => ({
+      className: pob.Build.className,
+      ascendancy: pob.Build.ascendClassName,
+      // TODO(human): build gear from pob.Items: find the active set, then resolve each Slot's itemId with parseItem.
+      gear: {},
+    })),
 });
 
 // Repeatable elements are always arrays, even when the XML has only one of them.
@@ -36,5 +60,5 @@ export function parse(xml: string): Build {
     throw new PobDecodeError("Decoded Xml is missing required attributes.", {
       cause: result.error,
     });
-  return result.data.PathOfBuilding.Build;
+  return result.data.PathOfBuilding;
 }

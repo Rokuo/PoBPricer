@@ -3,6 +3,28 @@ import { describe, expect, it } from "vitest";
 import { decode, PobDecodeError } from "./decode.ts";
 import { parse } from "./parse.ts";
 
+/*
+ * Xml :
+ * Build :
+ *  [PlayerStat]
+ *  [FullDpsSkill]
+ *  [MinionStat]
+ * Tree for respec maybe
+ * Skills ? :
+ *  [SkillSet]
+ *   [Skill]
+ *    [Gem]
+ * Items :
+ *  [Item]
+ *   [ModRange]
+ *  [ItemSet]
+ *  [TradeSearch ?]
+ * Config ?:
+ *  [ConfigSet ?]
+ *
+ */
+
+
 describe("parsing PoB XML into a Build", () => {
   it("should parse a good build", () => {
     const pob = pobCodes.necromancerAggw;
